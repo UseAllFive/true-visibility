@@ -26,6 +26,10 @@ var VISIBILITY = (function(){
       var p = el.parentNode,
           VISIBLE_PADDING = 2;
 
+      if ( !_elementInDocument(el) ) {
+        return false;
+      }
+
       //-- Return true for document node
       if ( 9 === p.nodeType ) {
         return true;
@@ -57,8 +61,8 @@ var VISIBILITY = (function(){
       }
       //-- If we have a parent, let's continue:
       if ( p ) {
-        //-- Check if the parent can hide its children. Also, only check offset parents.
-        if ( ('hidden' === _getStyle(p, 'overflow') || 'scroll' === _getStyle(p, 'overflow')) && el.offsetParent === p ) {
+        //-- Check if the parent can hide its children.
+        if ( ('hidden' === _getStyle(p, 'overflow') || 'scroll' === _getStyle(p, 'overflow')) ) {
           //-- Only check if the offset is different for the parent
           if (
             //-- If the target element is to the right of the parent elm
@@ -88,11 +92,20 @@ var VISIBILITY = (function(){
     //-- Cross browser method to get style properties:
     function _getStyle(el, property) {
       if ( window.getComputedStyle ) {
-        return document.defaultView.getComputedStyle(el)[property];
+        return document.defaultView.getComputedStyle(el,null)[property];  
       }
       if ( el.currentStyle ) {
         return el.currentStyle[property];
       }
+    }
+
+    function _elementInDocument(element) {
+      while (element = element.parentNode) {
+        if (element == document) {
+            return true;
+        }
+      }
+      return false;
     }
 
     return {
