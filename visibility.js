@@ -6,6 +6,9 @@
  * Package URL: https://github.com/UseAllFive/ua5-js-utils
  */
 Element.prototype.isVisible = function() {
+  
+  'use strict';
+
     /**
      * Checks if a DOM element is visible. Takes into
      * consideration its parents and overflow.
