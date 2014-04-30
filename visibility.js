@@ -5,7 +5,7 @@
  * Description: Handles all things involving element visibility.
  * Package URL: https://github.com/UseAllFive/ua5-js-utils
  */
-var VISIBILITY = (function(){
+Element.prototype.isVisible = function() {
     /**
      * Checks if a DOM element is visible. Takes into
      * consideration its parents and overflow.
@@ -108,9 +108,6 @@ var VISIBILITY = (function(){
       return false;
     }
 
-    return {
-      'getStyle' : _getStyle,
-      'isVisible' : _isVisible
-    }
+  return _isVisible(this);
 
-  })();
+};

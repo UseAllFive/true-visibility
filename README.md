@@ -7,5 +7,5 @@ Checks if a DOM element is truly visible
 ``` Javascript
 var my_element = document.getElementById('my-element');
 //-- Returns true/false
-VISIBILITY.isVisible(my_element);
+my_element.isVisible(my_element);
 ```
