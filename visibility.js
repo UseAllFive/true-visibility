@@ -3,7 +3,7 @@
  * Author URI: http://useallfive.com/
  *
  * Description: Checks if a DOM element is truly visible.
- * Package URL: https://github.com/UseAllFive/ua5-js-utils
+ * Package URL: https://github.com/UseAllFive/true-visibility
  */
 Element.prototype.isVisible = function() {
 
