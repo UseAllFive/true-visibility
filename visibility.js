@@ -65,7 +65,8 @@ Element.prototype.isVisible = function() {
         //-- If we have a parent, let's continue:
         if ( p ) {
             //-- Check if the parent can hide its children.
-            if ( ('hidden' === _getStyle(p, 'overflow') || 'scroll' === _getStyle(p, 'overflow')) ) {
+            var overflow = _getStyle(p, 'overflow');
+            if ( ('hidden' === overflow || 'scroll' === overflow || 'auto' === overflow) ) {
                 //-- Only check if the offset is different for the parent
                 if (
                     //-- If the target element is to the right of the parent elm
