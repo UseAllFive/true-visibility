@@ -95,7 +95,12 @@ Element.prototype.isVisible = function() {
     //-- Cross browser method to get style properties:
     function _getStyle(el, property) {
         if ( window.getComputedStyle ) {
-            return document.defaultView.getComputedStyle(el,null)[property];
+            var computedStyle = document.defaultView.getComputedStyle(el,null);
+            if (computedStyle != null) {
+                return computedStyle[property];
+            } else {
+                return null;
+            }
         }
         if ( el.currentStyle ) {
             return el.currentStyle[property];
