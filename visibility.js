@@ -1,116 +1,120 @@
 /**
- * Author: Jason Farrell
- * Author URI: http://useallfive.com/
+ * ## isVisible
  *
- * Description: Checks if a DOM element is truly visible.
- * Package URL: https://github.com/UseAllFive/true-visibility
+ * @author Jason Farrell (http://useallfive.com/)
+ * @author Mouse Braun (mouse@knoblau.ch)
+ *
+ * Checks if a DOM element is truly visible.
+ *
+ * @npm http://
  */
-Element.prototype.isVisible = function() {
-
+var isVisible = function( _el )
+{
     'use strict';
 
+    var VISIBLE_PADDING = 2;
+
     /**
-     * Checks if a DOM element is visible. Takes into
-     * consideration its parents and overflow.
+     * ## inDocument
      *
-     * @param (el)      the DOM element to check if is visible
+     * checks if an element is in the document
      *
-     * These params are optional that are sent in recursively,
-     * you typically won't use these:
+     * @param {DOMElement} element element to check
      *
-     * @param (t)       Top corner position number
-     * @param (r)       Right corner position number
-     * @param (b)       Bottom corner position number
-     * @param (l)       Left corner position number
-     * @param (w)       Element width number
-     * @param (h)       Element height number
+     * @return {Boolean} in document or not
      */
-    function _isVisible(el, t, r, b, l, w, h) {
-        var p = el.parentNode,
-                VISIBLE_PADDING = 2;
-
-        if ( !_elementInDocument(el) ) {
-            return false;
-        }
-
-        //-- Return true for document node
-        if ( 9 === p.nodeType ) {
-            return true;
-        }
-
-        //-- Return false if our element is invisible
-        if (
-             '0' === _getStyle(el, 'opacity') ||
-             'none' === _getStyle(el, 'display') ||
-             'hidden' === _getStyle(el, 'visibility')
-        ) {
-            return false;
-        }
-
-        if (
-            'undefined' === typeof(t) ||
-            'undefined' === typeof(r) ||
-            'undefined' === typeof(b) ||
-            'undefined' === typeof(l) ||
-            'undefined' === typeof(w) ||
-            'undefined' === typeof(h)
-        ) {
-            t = el.offsetTop;
-            l = el.offsetLeft;
-            b = t + el.offsetHeight;
-            r = l + el.offsetWidth;
-            w = el.offsetWidth;
-            h = el.offsetHeight;
-        }
-        //-- If we have a parent, let's continue:
-        if ( p ) {
-            //-- Check if the parent can hide its children.
-            if ( ('hidden' === _getStyle(p, 'overflow') || 'scroll' === _getStyle(p, 'overflow')) ) {
-                //-- Only check if the offset is different for the parent
-                if (
-                    //-- If the target element is to the right of the parent elm
-                    l + VISIBLE_PADDING > p.offsetWidth + p.scrollLeft ||
-                    //-- If the target element is to the left of the parent elm
-                    l + w - VISIBLE_PADDING < p.scrollLeft ||
-                    //-- If the target element is under the parent elm
-                    t + VISIBLE_PADDING > p.offsetHeight + p.scrollTop ||
-                    //-- If the target element is above the parent elm
-                    t + h - VISIBLE_PADDING < p.scrollTop
-                ) {
-                    //-- Our target element is out of bounds:
-                    return false;
-                }
-            }
-            //-- Add the offset parent's left/top coords to our element's offset:
-            if ( el.offsetParent === p ) {
-                l += p.offsetLeft;
-                t += p.offsetTop;
-            }
-            //-- Let's recursively check upwards:
-            return _isVisible(p, t, r, b, l, w, h);
-        }
-        return true;
-    }
-
-    //-- Cross browser method to get style properties:
-    function _getStyle(el, property) {
-        if ( window.getComputedStyle ) {
-            return document.defaultView.getComputedStyle(el,null)[property];
-        }
-        if ( el.currentStyle ) {
-            return el.currentStyle[property];
-        }
-    }
-
-    function _elementInDocument(element) {
-        while (element = element.parentNode) {
-            if (element == document) {
-                    return true;
+    var _inDocument = function( element )
+    {
+        while ( element = element.parentNode )
+        {
+            if ( element === document )
+            {
+                return true;
             }
         }
         return false;
+    };
+
+    /**
+     * ## _isVisible
+     *
+     * Checks if a DOM element is visible. Takes into
+     * consideration its parents and overflow.
+     *
+     * @param {DOMElement} el the DOM element to check if is visible
+     * @param {Number} t Top corner position number
+     * @param {Number} r Right corner position number
+     * @param {Number} b Bottom corner position number
+     * @param {Number} l Left corner position number
+     * @param {Number} w Element width number
+     * @param {Number} h Element height number
+     *
+     * @return _Boolean_ [description]
+     */
+    var _isVisible = function( el, t, r, b, l, w, h )
+    {
+        var style = getComputedStyle( el );
+
+        if ( style.opacity === '0' || style.display === 'none' ||
+            style.visibility === 'hidden' )
+        {
+            return false;
+        }
+
+        var p = el.parentNode;
+
+        if ( p )
+        {
+            if ( p === document )
+            {
+                return true;
+            }
+
+            var pStyle      = getComputedStyle( p );
+            var pOverflow   = pStyle.overflow;
+
+            /**
+             * check if the target element is to the right, left, under, or
+             * above it's parent
+             */
+            if ( pOverflow === 'hidden' || pOverflow === 'scroll' )
+            {
+                if ( l + VISIBLE_PADDING > p.offsetWidth + p.scrollLeft ||
+                    l + w - VISIBLE_PADDING < p.scrollLeft ||
+                    t + VISIBLE_PADDING > p.offsetHeight + p.scrollTop ||
+                    t + h - VISIBLE_PADDING < p.scrollTop )
+                {
+                    return false;
+                }
+            }
+
+            if ( p === el.offsetParent )
+            {
+                l += p.offsetLeft;
+                t += p.offsetTop;
+            }
+
+            return _isVisible( p, t, r, b, l, w, h );
+        }
+
+        return true;
+    };
+
+    /*
+     * only check once.  it's parents aren't going to be any more or less in
+     * the document
+     */
+    if ( !_inDocument( _el ) )
+    {
+        return false;
     }
 
-    return _isVisible(this);
+    var t = _el.offsetTop;
+    var l = _el.offsetLeft;
+    var b = t + _el.offsetHeight;
+    var r = l + _el.offsetWidth;
+    var w = _el.offsetWidth;
+    var h = _el.offsetHeight;
 
+    return _isVisible( _el, t, r, b, l, w, h );
 };
