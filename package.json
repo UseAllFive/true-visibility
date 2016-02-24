@@ -1,0 +1,26 @@
+{
+  "name": "true-visibility",
+  "version": "0.0.2",
+  "description": "check if an element is visible (ie9+)",
+  "main": "./src/visibility.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mousemke/true-visibility.git"
+  },
+  "keywords": [
+    "dom",
+    "visible",
+    "display",
+    "visibility",
+    "hidden"
+  ],
+  "author": "Mouse Braun <mouse@knoblau.ch> (http://knoblau.ch/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mousemke/true-visibility/issues"
+  },
+  "homepage": "https://github.com/mousemke/true-visibility"
+}

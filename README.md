@@ -3,9 +3,18 @@ true-visibility
 
 Checks if a DOM element is truly visible
 
-### Usage
+Installation
+============
+
+```
+npm i true-visibility -D
+```
+
+
+Usage
+=====
+
 ``` Javascript
-var my_element = document.getElementById('my-element');
-//-- Returns true/false
-my_element.isVisible(my_element);
+var bodyElement = document.getElementById( 'body' );
+isVisible( bodyElement ); // true
 ```

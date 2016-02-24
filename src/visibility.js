@@ -104,7 +104,7 @@ var isVisible = function( _el )
      * only check once.  it's parents aren't going to be any more or less in
      * the document
      */
-    if ( !_inDocument( _el ) )
+    if ( !_el || !_inDocument( _el ) )
     {
         return false;
     }
@@ -118,3 +118,5 @@ var isVisible = function( _el )
 
     return _isVisible( _el, t, r, b, l, w, h );
 };
+
+module.exports = isVisible;
