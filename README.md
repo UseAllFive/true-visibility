@@ -1,4 +1,4 @@
-true-visibility 0.0.5
+true-visibility 0.0.6
 =====================
 
 Checks if a DOM element is truly visible

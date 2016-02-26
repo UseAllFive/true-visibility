@@ -1,6 +1,6 @@
 {
   "name": "true-visibility",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "check if an element is visible (ie9+)",
   "main": "./dist/true-visibility.min.js",
   "scripts": {
@@ -24,7 +24,6 @@
     "url": "https://github.com/mousemke/true-visibility/issues"
   },
   "devDependencies": {
-    "browserify": "^5.11.2",
     "gulp": "^3.8.7",
     "gulp-header": "^1.2.2",
     "gulp-rename": "^1.2.2",
