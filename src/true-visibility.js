@@ -5,8 +5,6 @@
  * @author Mouse Braun (mouse@knoblau.ch)
  *
  * Checks if a DOM element is truly visible.
- *
- * @npm http://
  */
 var isVisible = function( _el )
 {
@@ -131,4 +129,8 @@ var isVisible = function( _el )
 if ( typeof module !== 'undefined' )
 {
     module.exports = isVisible;
+}
+else
+{
+    return isVisible;
 }

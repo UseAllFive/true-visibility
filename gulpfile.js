@@ -36,7 +36,15 @@ gulp.task( 'build', function()
 });
 
 
+gulp.task( 'build-script', function()
+{
+    gulp.src( './src/true-visibility.js' )
+    // uglify source
+    // // save as true-visibility.script.js
+});
+
+
 gulp.task( 'default', [], function()
 {
-    gulp.start( [ 'build' ] );
+    gulp.start( [ 'build', 'build-script' ] );
 } );
