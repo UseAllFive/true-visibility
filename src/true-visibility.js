@@ -1,13 +1,25 @@
+
+/**
+ * ## isVisible
+ *
+ * @author Jason Farrell (http://useallfive.com/)
+ * @author Mouse Braun (mouse@knoblau.ch)
+ *
+ * Checks if a DOM element is truly visible.
+ */
 ( function( root, factory )
 {
-    if ( typeof define === 'function' && define.amd )
-    {
-        define( [], function ()
-        {
-            return ( root.isVisible = factory() );
-        } );
-    }
-    else if ( typeof module === 'object' && module.exports )
+    // if ( typeof define === 'function' && define.amd )
+    // {
+    //      // if this is injected into a page, it has no way of knowing
+    //      // so it wont run
+    //     define( 'isVisible', [], function()
+    //     {
+    //         return ( root.isVisible = factory() );
+    //     } );
+    // }
+    // else
+    if ( typeof module === 'object' && module.exports )
     {
         module.exports = factory();
     }
@@ -18,14 +30,6 @@
 }
 ( this, function()
 {
-    /**
-     * ## isVisible
-     *
-     * @author Jason Farrell (http://useallfive.com/)
-     * @author Mouse Braun (mouse@knoblau.ch)
-     *
-     * Checks if a DOM element is truly visible.
-     */
     var isVisible = function( _el )
     {
         'use strict';
