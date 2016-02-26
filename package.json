@@ -1,6 +1,6 @@
 {
   "name": "true-visibility",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "check if an element is visible (ie9+)",
   "main": "./dist/true-visibility.min.js",
   "scripts": {
@@ -30,5 +30,11 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0"
   },
-  "homepage": "https://github.com/mousemke/true-visibility"
+  "homepage": "https://npmjs.org/mousemke/true-visibility",
+  "files": [
+    "CODE_OF_CONDUCT.md",
+    "README.md",
+    "LICENSE.txt"
+    "dist/"
+  ],
 }
