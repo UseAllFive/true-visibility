@@ -37,17 +37,7 @@ gulp.task( 'build', function()
 });
 
 
-gulp.task( 'build-nightmare', function()
-{
-    return gulp.src( './src/true-visibility.js' )
-        .pipe(  uglify() )
-        .pipe( rename( 'true-visibility.nightmare.js' ) )
-        .pipe( header( licenceShort ) )
-        .pipe( gulp.dest( 'dist' ) );
-});
-
-
 gulp.task( 'default', [], function()
 {
-    gulp.start( [ 'build', 'build-nightmare' ] );
+    gulp.start( [ 'build' ] );
 } );
