@@ -14,6 +14,14 @@ var isVisible = function( _el )
 
     var VISIBLE_PADDING = 2;
 
+    /*
+     * allows selector strings
+     */
+    if ( typeof _el === 'string' )
+    {
+        _el = document.querySelector( _el );
+    }
+
     /**
      * ## inDocument
      *
@@ -27,6 +35,7 @@ var isVisible = function( _el )
     {
         while ( element = element.parentNode )
         {
+            console.log( )
             if ( element === document )
             {
                 return true;
@@ -119,4 +128,7 @@ var isVisible = function( _el )
     return _isVisible( _el, t, r, b, l, w, h );
 };
 
-module.exports = isVisible;
+if ( typeof module !== 'undefined' )
+{
+    module.exports = isVisible;
+}
