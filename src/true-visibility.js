@@ -132,5 +132,5 @@ if ( typeof module !== 'undefined' )
 }
 else
 {
-    return isVisible;
+    window.isVisible;
 }

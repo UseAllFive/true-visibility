@@ -2,6 +2,7 @@ var gulp            = require( 'gulp' );
 var fs              = require( 'fs' );
 var uglify          = require( 'gulp-uglify' );
 var header          = require( 'gulp-header' );
+var rename          = require( 'gulp-rename' );
 var browserify      = require( 'browserify' );
 
 var now             = new Date();
@@ -36,15 +37,17 @@ gulp.task( 'build', function()
 });
 
 
-gulp.task( 'build-script', function()
+gulp.task( 'build-nightmare', function()
 {
-    gulp.src( './src/true-visibility.js' )
-    // uglify source
-    // // save as true-visibility.script.js
+    return gulp.src( './src/true-visibility.js' )
+        .pipe(  uglify() )
+        .pipe( rename( 'true-visibility.nightmare.js' ) )
+        .pipe( header( licenceShort ) )
+        .pipe( gulp.dest( 'dist' ) );
 });
 
 
 gulp.task( 'default', [], function()
 {
-    gulp.start( [ 'build', 'build-script' ] );
+    gulp.start( [ 'build', 'build-nightmare' ] );
 } );
