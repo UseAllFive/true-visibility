@@ -1,4 +1,4 @@
-true-visibility 0.1.0
+true-visibility 0.1.1
 =====================
 
 Checks if a DOM element is truly visible
@@ -29,8 +29,8 @@ true-visibility is UMD compatible. Depending on your environment, you can use tr
 or
 
 ```js
-    let isVisible = require( 'true-visibility'' );
-    isVisible( 'body' ) // true
+    let isVisible = require( 'true-visibility' );
+    isVisible( 'body' ); // true
 ```
 
 or
@@ -50,6 +50,9 @@ Need to report something? [mkem@knoblau.ch](mailto:mkem@knoblau.ch)
 
 Changes
 -------
+
++ 0.1.1
+    + updated package dependencies
 
 + 0.1.0
     + UMD fixed
