@@ -9,16 +9,11 @@
  */
 ( function( root, factory )
 {
-    // if ( typeof define === 'function' && define.amd )
-    // {
-    //      // if this is injected into a page, it has no way of knowing
-    //      // so it wont run
-    //     define( 'isVisible', [], function()
-    //     {
-    //         return ( root.isVisible = factory() );
-    //     } );
-    // }
-    // else
+    if ( typeof define === 'function' && define.amd )
+    {
+        define( 'isVisible', [], factory );
+    }
+    else
     if ( typeof module === 'object' && module.exports )
     {
         module.exports = factory();
